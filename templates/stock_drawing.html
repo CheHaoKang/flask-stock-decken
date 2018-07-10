@@ -5,6 +5,7 @@
     <title>Title</title>
 </head>
 <body>
+<div style="text-align:center;font-size:24px;">股票走勢 - 接近歷史低點的股票</div>
 {% for png in png_files %}
     <p align="center">{{png['filename'].replace('stockDrawing_', '').replace('.png', '')}}</p>
     <p align="center"><img src="{{url_for('static', filename=png['filename'])}}" /></p>
