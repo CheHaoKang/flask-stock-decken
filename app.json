@@ -1,0 +1,7 @@
+{
+  "name": "Flask diagram-stock showing on Heroku",
+  "description": "Show stock diagrams.",
+  "image": "heroku/python",
+  "repository": "https://git.heroku.com/flask-stock-decken.git",
+  "keywords": ["python", "flask" ]
+}

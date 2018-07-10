@@ -1,0 +1,1 @@
+web: gunicorn flask_stock_drawing:app --log-file -
