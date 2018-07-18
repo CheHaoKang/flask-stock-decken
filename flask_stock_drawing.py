@@ -4,29 +4,13 @@ from flask import request
 import glob
 import pymysql.cursors
 import re
+import json
 
 app = Flask(__name__)
 
 def get_potential_stocks():
-    try:
-        # Execute the SQL command
-        conn = pymysql.connect(host='192.168.2.55', port=3306, user='root', passwd='89787198', db='stockevaluation', charset="utf8")
-        cursor = conn.cursor()
-        cursor.execute('SELECT stockcode,stockName,stockIsYesterdayPotential,stockIsTodayPotential FROM stocktable WHERE stockIsYesterdayPotential=1 OR stockIsTodayPotential=1')
-        # Fetch all the rows in a list of lists.
-        stock_potential_info = {}
-        if_potential_dict = {0:'不是', 1:'是'}
-        results = cursor.fetchall()
-        for row in results:
-            stock_potential_info[row[0]] = [row[1], if_potential_dict[int(row[2])], if_potential_dict[int(row[3])]]
-
-    except:
-        print("Error: unable to fecth data")
-
-    cursor.close()
-    conn.commit()
-    conn.close()
-
+    with open('potential_stocks.json', encoding='utf8') as f:
+        stock_potential_info = json.load(f)
     return stock_potential_info
 
 @app.route('/', methods=['GET', 'POST'])
