@@ -3,12 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <title>接近歷史低點的股票</title>
+    <style>
+    table, th, td {
+        border: 1px solid black;
+        margin-left:auto;
+        margin-right:auto;
+    }
+    </style>
 </head>
 <body>
-<div style="text-align:center;font-size:24px;">股票走勢 - 接近歷史低點的股票</div>
+<div style="text-align:center;font-size:24px;">股票走勢 - 接近歷史低點的股票
+    <!--<table width="auto">-->
+      <!--<tr>-->
+        <!--<th></th>-->
+        <!--<th>昨日潛力股票</th>-->
+        <!--<th>今日潛力股票</th>-->
+      <!--</tr>-->
+      <!--{% for key,value in stock_potential_info.items() %}-->
+      <!--<tr>-->
+        <!--<th>{{key+' '+value[0]}}</th>-->
+        <!--<th>{{value[1]}}</th>-->
+        <!--<th>{{value[2]}}</th>-->
+      <!--</tr>-->
+      <!--{% endfor %}-->
+    <!--</table>-->
+</div>
+
 {% for png in png_files %}
-    <p align="center">{{png['filename'].replace('stockDrawing_', '').replace('.png', '')}}</p>
+    {% set stock = png['filename'].replace('stockDrawing_', '').replace('.png', '') %}
+    {% set stock = re.sub('_.*$', '', stock) %}
+    {% if stock_potential_info[stock][1]=='不是' %}
+        {% set new_potential = '新潛力股' %}
+    {% endif %}
+    <p align="center"><span style="font-size:24px;color:red;">{{new_potential}}</span> {{png['filename'].replace('stockDrawing_', '').replace('.png', '')}}</p>
     <p align="center"><img src="{{url_for('static', filename=png['filename'])}}" /></p>
+
 {% endfor %}
 </body>
 </html>
