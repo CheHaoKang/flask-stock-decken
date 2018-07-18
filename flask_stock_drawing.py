@@ -2,7 +2,6 @@ import sys, os
 from flask import Flask, render_template
 from flask import request
 import glob
-import pymysql.cursors
 import re
 import json
 
