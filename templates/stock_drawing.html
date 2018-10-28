@@ -42,6 +42,8 @@
         {% set new_potential = '定存股' %}
     {% elif stock_potential_info[stock][1]=='不是' %}
         {% set new_potential = '新潛力股' %}
+    {% elif stock_potential_info[stock][3]=='艾蜜莉' %}
+        {% set new_potential = '艾蜜莉' %}
     {% endif %}
     <p align="center"><span style="font-size:24px;color:red;">{{new_potential}}</span> {{png['filename'].replace('stockDrawing_', '').replace('.png', '')}}</p>
 <p align="center"><a target="_blank" href="https://goodinfo.tw/StockInfo/StockDividendPolicy.asp?STOCK_ID={{stock}}">https://goodinfo.tw/StockInfo/StockDividendPolicy.asp?STOCK_ID={{stock}}</a></p>
