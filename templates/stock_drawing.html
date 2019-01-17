@@ -38,12 +38,14 @@
 {% for png in png_files %}
     {% set stock = png['filename'].replace('stockDrawing_', '').replace('.png', '') %}
     {% set stock = re.sub('_.*$', '', stock) %}
-    {% if stock_potential_info[stock][3]=='艾蜜莉' %}
-        {% set new_potential = '艾蜜莉' %}
-    {% elif stock_potential_info[stock][3]=='定存股' %}
-        {% set new_potential = '定存股' %}
-    {% elif stock_potential_info[stock][1]=='不是' %}
-        {% set new_potential = '新潛力股' %}
+    {% if stock in stock_potential_info %}
+        {% if stock_potential_info[stock][3]=='艾蜜莉' %}
+            {% set new_potential = '艾蜜莉' %}
+        {% elif stock_potential_info[stock][3]=='定存股' %}
+            {% set new_potential = '定存股' %}
+        {% elif stock_potential_info[stock][1]=='不是' %}
+            {% set new_potential = '新潛力股' %}
+        {% endif %}
     {% endif %}
 
 {% if new_potential=='艾蜜莉' %}
